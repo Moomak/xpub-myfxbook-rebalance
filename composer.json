@@ -1,0 +1,10 @@
+{
+    "require": {
+        "nimiq/xpub": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+} 

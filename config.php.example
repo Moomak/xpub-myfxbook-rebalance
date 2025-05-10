@@ -1,0 +1,37 @@
+<?php
+
+// --- Bitcoin Configuration ---
+// !!! Important: Ensure this is your zPub key (e.g., zpub6q...)
+define('ZPUB_KEY', 'YOUR_ZPUB_KEY_HERE'); 
+
+// Define the number of addresses to derive from zpub for balance checking (per path type: receive/change).
+// If you have a wallet with many transactions/used addresses, you might need to increase this value.
+define('XPUB_ADDRESS_DISCOVERY_LIMIT', 100); // Number of addresses to generate and check per derivation path (e.g., m/84'/0'/0'/0/0 to m/84'/0'/0'/0/19).
+
+// Define the number of consecutive unused addresses with no transactions/balance before stopping the search for a specific path.
+// Note: The current Gap Limit enforcement in BitcoinService.php is simplified.
+// The system will always derive addresses up to XPUB_ADDRESS_DISCOVERY_LIMIT for each path type.
+// A stricter implementation (stopping derivation when the actual gap is reached) is more complex and not yet implemented.
+define('XPUB_GAP_LIMIT', 20); 
+
+// --- CoinGecko API Configuration ---
+// The CoinGecko Public API generally does not require an API Key for fetching simple price data.
+// However, if you have a Pro API Key or need to use authenticated endpoints, you can enter it here.
+define('COINGECKO_API_KEY', ''); // (Optional) Enter your CoinGecko API Key if you have one.
+define('TARGET_CURRENCY', 'usd'); // The target currency for BTC price comparison (CoinGecko uses 'usd', not 'usdt' directly, for its simple price API).
+
+// --- Tatum API Configuration (Commented out as it's no longer used) ---
+// define('TATUM_API_KEY', 'YOUR_TATUM_API_KEY_HERE');
+// define('TATUM_BITCOIN_NETWORK_TYPE', 'mainnet'); // or 'testnet'
+
+// Myfxbook API Configuration
+define('MYFXBOOK_EMAIL', 'YOUR_MYFXBOOK_EMAIL');
+define('MYFXBOOK_PASSWORD', 'YOUR_MYFXBOOK_PASSWORD');
+define('MYFXBOOK_SESSION_KEY', ''); // Leave this blank initially. The system will attempt to log in. If successful, a new session key will be displayed on the page; update this value with the new key to avoid repeated logins.
+define('MYFXBOOK_TARGET_ACCOUNT_NAME', 'YOUR_MYFXBOOK_ACCOUNT_NAME'); // The name of the Myfxbook account from which to fetch the balance.
+
+// --- ntfy.sh Notification Configuration ---
+define('NTFY_TOPIC', 'your_ntfy_topic_here'); // Replace with your actual ntfy.sh topic. Can be left blank to disable notifications.
+define('NTFY_THRESHOLD', 1.5); // Notify if BTC to Myfxbook ratio falls below this value (e.g., 1.5 means BTC value is less than 1.5x Myfxbook value).
+
+?> 
